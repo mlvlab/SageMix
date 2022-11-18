@@ -19,7 +19,7 @@ cd ..
 ## Data
 
 **Notes** : When you run the `main.py`, dataset(ModelNet40, ScanObjectNN) is automatically downloaded at `.../SageMix/pointcloud/data/`.  
-If you already have downloaded dataset on your `${PATH}`, make a symbolic link at `.../SageMix/pointcloud/data/`. 
+If you already have downloaded dataset on your `$PATH`, make a symbolic link at `.../SageMix/pointcloud/data/`. 
 
 ## Runnig the code
 
@@ -38,9 +38,9 @@ CUDA_VISIBLE_DEVICES=0,1 python main.py --exp_name=SageMix --model=dgcnn --data=
 
 **Test**
 ```
-CUDA_VISIBLE_DEVICES=$GPUs python main.py --exp_name=SageMix --model=$model --data=$data --model_path=${PATH}
+CUDA_VISIBLE_DEVICES=$GPUs python main.py --exp_name=SageMix --model=$model --data=$data --model_path=$PATH
 ```
-- Evaluation with trained model located at `${PATH}`
+- Evaluation with trained model located at `$PATH`
 
 ## Contact
 Let me know if you have any questions or concerns.

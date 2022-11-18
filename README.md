@@ -17,7 +17,7 @@ Licensed under [MIT License](https://github.com/mlvlab/SageMix/blob/main/LICENSE
 If you find this code useful for your work, please consider citing:
 ```
 @InProceedings{lee2022sagemix,
-    title     = {Point Cloud Augmentation With Weighted Local Transformations},
+    title     = {SageMix: Saliency-Guided Mixup for Point Clouds},
     author    = {Sanghyeok Lee and 
                  Minkyu Jeon and
                  Injae Kim and 
