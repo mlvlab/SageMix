@@ -1,0 +1,5 @@
+numpy 
+h5py 
+glob2
+scikit-learn
+tqdm
