@@ -39,7 +39,7 @@ CUDA_VISIBLE_DEVICES=0,1 python main.py --exp_name=SageMix --model=dgcnn --data=
 
 **Test**
 ```
-CUDA_VISIBLE_DEVICES=$GPUs python main.py --exp_name=SageMix --model=$model --data=$data --model_path=$PATH
+CUDA_VISIBLE_DEVICES=$GPUs python main.py --eval=True --exp_name=SageMix --model=$model --data=$data --model_path=$PATH
 ```
 - Evaluation with trained model located at `$PATH`
 
