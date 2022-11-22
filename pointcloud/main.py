@@ -14,6 +14,8 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+
+from SageMix import SageMix
 from data import ModelNet40, ScanObjectNN
 from model import PointNet, DGCNN
 from util import cal_loss, cal_loss_mix, IOStream
@@ -75,12 +77,10 @@ def train(args, io):
 
     scheduler = CosineAnnealingLR(opt, args.epochs, eta_min=args.lr)
     
-    if not args.no_SageMix:
-        from SageMix import SageMix
-        sagemix = SageMix(args, num_class)
-        criterion = cal_loss_mix
-    else:
-        criterion = cal_loss
+
+    sagemix = SageMix(args, num_class)
+    criterion = cal_loss_mix
+
 
     best_test_acc = 0
     for epoch in range(args.epochs):
@@ -97,16 +97,18 @@ def train(args, io):
             data, label = data.to(device), label.to(device).squeeze()
             batch_size = data.size()[0]
             
-            if not args.no_SageMix:
-                model.eval()
-                data_var = Variable(data.permute(0,2,1), requires_grad=True)
-                logits = model(data_var)
-                loss = cal_loss(logits, label, smoothing=False)
-                loss.backward()
-                opt.zero_grad()
-                saliency = torch.sqrt(torch.mean(data_var.grad**2,1))
-                data, label = sagemix.mix(data, label, saliency)
-                model.train()
+            ####################
+            # generate augmented sample
+            ####################
+            model.eval()
+            data_var = Variable(data.permute(0,2,1), requires_grad=True)
+            logits = model(data_var)
+            loss = cal_loss(logits, label, smoothing=False)
+            loss.backward()
+            opt.zero_grad()
+            saliency = torch.sqrt(torch.mean(data_var.grad**2,1))
+            data, label = sagemix.mix(data, label, saliency)
+            model.train()
                 
             opt.zero_grad()
             logits = model(data.permute(0,2,1))
@@ -188,7 +190,6 @@ def test(args, io):
     test_true = []
     test_pred = []
     for data, label in tqdm(test_loader):
-
         data, label = data.to(device), label.to(device).squeeze()
         data = data.permute(0, 2, 1)
         batch_size = data.size()[0]
@@ -243,10 +244,15 @@ if __name__ == "__main__":
     parser.add_argument('--model_path', type=str, default='', metavar='N',
                         help='Pretrained model path')
     
-    parser.add_argument('--no_SageMix', action='store_true')
-    parser.add_argument('--sigma', type=float, default=0.3) 
+    parser.add_argument('--sigma', type=float, default=-1) 
     parser.add_argument('--theta', type=float, default=0.2) 
     args = parser.parse_args()
+
+    if args.sigma==-1:
+        if args.model=='dgcnn':
+            args.sigma=0.3
+        elif args.model=="pointnet":
+            args.sigma=2.0
 
     _init_()
 

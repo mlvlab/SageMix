@@ -25,11 +25,12 @@ If you already have downloaded dataset on your `$PATH`, make a symbolic link at 
 
 **Train**
 ```
-CUDA_VISIBLE_DEVICES=$GPUs python main.py --exp_name=SageMix --model=$model --data=$data
+CUDA_VISIBLE_DEVICES=$GPUs python main.py --exp_name=SageMix --model=$model --data=$data #--sigma=$sigma
 ```
 - $GPUs is the list of GPUs to use
 - $model is the name of model, currently we support {`dgcnn`, `pointnet`} for DGCNN and PointNet, respectively.
 - $data is the name of dataset, currently we support {`MN40`, `SONN_easy`, `SONN_hard`} for ModelNet40, ScanObjectNN-OBJ_ONLY, and ScanObjectNN-PB_T50_RS, respectively.  
+- $sigma is the bandwidth for kernel. Note that $sigma is automatically set to 0.3 for DGCNN and 2.0 for pointNet.
 
 For instance, if you want to train DGCNN on ScanObjectNN-OBJ_ONLY using 2 GPU, see below.
 ```
