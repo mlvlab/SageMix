@@ -253,6 +253,11 @@ if __name__ == "__main__":
             args.sigma=0.3
         elif args.model=="pointnet":
             args.sigma=2.0
+    
+    if args.model=='dgcnn':
+        args.use_sgd=True
+    elif args.model=="pointnet":
+        args.use_sgd=False
 
     _init_()
 
