@@ -6,11 +6,11 @@ Official Implementation (PyTorch) of SageMix, (NeurIPS 2022). ([Arxiv](https://a
 ![PointWOLF_main](assets/figure_main.jpg)
 
 ## Usage
-- See [pointcloud](https://github.com/mlvlab/SageMix/tree/main/pointcloud) for point cloud processing.
+- See [pointcloud](https://github.com/mlvlab/SageMix/tree/master/pointcloud) for point cloud processing.
 - The code and models for 2D Image classification will come soon.
 
 ## License
-Licensed under [MIT License](https://github.com/mlvlab/SageMix/blob/main/LICENSE)
+Licensed under [MIT License](https://github.com/mlvlab/SageMix/blob/master/LICENSE)
 > Copyright (c) 2022 MLV Lab (Machine Learning and Vision Lab at Korea University)
 
 ## Citation
