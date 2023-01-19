@@ -1,5 +1,5 @@
 # SageMix: Saliency-Guided Mixup for Point Clouds
-Official Implementation (PyTorch) of SageMix, (NeurIPS 2022). ([Arxiv](https://arxiv.org/abs/2210.06944))
+Official Implementation (PyTorch) of SageMix, (NeurIPS 2022). ([OpenReview](https://openreview.net/forum?id=q-FRENiEP_d)) ([Arxiv](https://arxiv.org/abs/2210.06944))
 > Sanghyeok Lee<sup>1*</sup>, Minkyu Jeon<sup>1*</sup>, Injae Kim<sup>1</sup>, Yunyang Xiong<sup>2</sup>, Hyunwoo J. Kim<sup>1†</sup>.  
 > <sup>1</sup>Korea University <sup>2</sup>Meta Reality Labs
 
